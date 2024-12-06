@@ -17,8 +17,10 @@ There are 5 types of synchronized objects in my exchange hybrid environment:
 
 Exchange hybrid is configured in the Entra connect sync settings.
 
+Last sync from Entra connect was 8:41
 I ran the Microsoft Graph command on 20:45 PM
-Around 21:15 already completed
+Around 21:00 already completed, but can take 72 hours
+At 9:11 next sync cycle started, didn't do anything because of status stopped-server-down
 
 
 
