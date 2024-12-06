@@ -13,7 +13,7 @@ Following components are part of this lab setup:
 - Entra Joined Windows 11 virtual machine in Hyper-V with Windows Hello for business (WHFB) enabled
 
 ### Step 1: Enable Microsoft Entra Kerberos
-Follow these steps https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust?tabs=intune to enable the Microsoft Entra Kerberos for your Active Directory domain. This creates the AzureADKerberos object in the domain controllers OU.
+Follow [these steps](https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust?tabs=intune) to enable the Microsoft Entra Kerberos for your Active Directory domain. This creates the AzureADKerberos object in the domain controllers OU.
 
 ![image](https://github.com/user-attachments/assets/06110f6a-9524-459e-bc2b-705dfbf8c188)
 
@@ -34,7 +34,7 @@ In the file shares section I created a file share:
 
 ![image](https://github.com/user-attachments/assets/bb9add12-836e-4238-b196-c50ce5c4a0f9)
 
-In order to integrate the file share with Active Directory, the storage account needs to be registered in your on-premises AD. https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable   
+In order to integrate the file share with Active Directory, [the storage account needs to be registered in your on-premises AD.](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable)   
 After running these steps, a computer account is created in the local active directory that represents the storage account: 
 
 ![image](https://github.com/user-attachments/assets/c2ab4478-0cf4-4f82-a16d-b413bab8865a)
