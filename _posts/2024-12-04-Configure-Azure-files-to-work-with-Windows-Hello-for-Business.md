@@ -14,10 +14,12 @@ Following components are part of this lab setup:
 
 ### Step 1: Enable Microsoft Entra Kerberos
 Follow [these steps](https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust?tabs=intune) to enable the Microsoft Entra Kerberos for your Active Directory domain. This creates the AzureADKerberos object in the domain controllers OU.
+
 ![image](https://github.com/user-attachments/assets/06110f6a-9524-459e-bc2b-705dfbf8c188)
 
 ### Step 2: Configure Windows Hello for Business policy that enabled Cloud Trust for on-premises authentication
 In the above Learn article the steps for configuring the Intune configuration policy are also described. I created the following policy and applied it to all users:
+
 ![image](https://github.com/user-attachments/assets/c838837c-996d-41ba-a1a4-ac5046db8110)
 
 ### Step 3: Enable Windows Hello For business
