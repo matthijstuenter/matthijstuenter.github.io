@@ -59,6 +59,8 @@ I signed in with my PIN on my Entra Joined device:
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png)
 
 After running the klist command, no Kerberos tickets showed up. This is expected because we haven’t yet contacted a domain controller for requesting access to a file share. 
+
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture13.png)
  
 For mounting the file share, I ran the command net use Z: \\%storateaccountname%\file.core.windows.net\%sharename% 
 The share is now mounted in file explorer without requiring further authentication:
