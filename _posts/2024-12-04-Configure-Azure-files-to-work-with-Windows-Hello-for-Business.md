@@ -36,7 +36,7 @@ In the file shares section I created a file share:
 In order to integrate the file share with Active Directory, [the storage account needs to be registered in your on-premises AD.](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable)   
 After running these steps, a computer account is created in the local active directory that represents the storage account: 
 
-![picture](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture6.png)  
+<img align="left" width="100" height="100" src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture6.png">
 
 When you go back to the properties of the file share in Azure, it will now show that the directory service is configured:
 
