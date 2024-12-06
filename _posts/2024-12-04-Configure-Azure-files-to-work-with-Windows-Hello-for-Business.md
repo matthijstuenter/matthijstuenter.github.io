@@ -15,12 +15,12 @@ Following components are part of this lab setup:
 ### Step 1: Enable Microsoft Entra Kerberos
 Follow [these steps](https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust?tabs=intune) to enable the Microsoft Entra Kerberos for your Active Directory domain. This creates the AzureADKerberos object in the domain controllers OU.
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture1.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture1.png" alt="image" style="float: left; margin-right: 10px;" />
 
 ### Step 2: Configure Windows Hello for Business policy that enabled Cloud Trust for on-premises authentication
 In the above Learn article the steps for configuring the Intune configuration policy are also described. I created the following policy and applied it to all users:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture2.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture2.png" alt="image" style="float: left; margin-right: 10px;" />
 
 ### Step 3: Enable Windows Hello For business
 If not already enabled, make sure that Windows Hello for Business is enabled for the device you want to test with. I created a policy for all users in the Devices > Enrollment > Windows Hello for Business section but you can also target specific users with an Identity protection settings catalog policy. 
@@ -28,32 +28,32 @@ If not already enabled, make sure that Windows Hello for Business is enabled for
 ### Step 4: Create a storage account in Azure 
 I created a storage account in my trial Azure subscription:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture4.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture4.png" alt="image" style="float: left; margin-right: 10px;" />
 
 In the file shares section I created a file share:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture5.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture5.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
 In order to integrate the file share with Active Directory, [the storage account needs to be registered in your on-premises AD.](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-ad-ds-enable)   
 After running these steps, a computer account is created in the local active directory that represents the storage account: 
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture6.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture6.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
 When you go back to the properties of the file share in Azure, it will now show that the directory service is configured:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture7.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture7.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
 When you click on ”configured” it shows that AD DS is enabled:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture9.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture9.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
 I also configured the share level permissions and gave my synchronized account (test.sync) the Storage File Data SMB Share Elevated Contributor permissions:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture10.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture10.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
 ### Step 5: Access the AD share from a Entra joined W11 device 
@@ -61,23 +61,23 @@ I created a Windows 11 VM that is Entra Joined (corporate owned). In the VM sett
  
 I signed in with my PIN on my Entra Joined device:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png" alt="image" style="float: left; margin-right: 10px;" />
 
 After running the klist command, no Kerberos tickets showed up. This is expected because we haven’t yet contacted a domain controller for requesting access to a file share. 
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture13.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture13.png" alt="image" style="float: left; margin-right: 10px;" />
 
 For mounting the file share, I ran the command net use Z: \\%storateaccountname%\file.core.windows.net\%sharename% 
 The share is now mounted in file explorer without requiring further authentication:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture14.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture14.png" alt="image" style="float: left; margin-right: 10px;" />
 
 I am able to create new folders and files:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture15.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture15.png" alt="image" style="float: left; margin-right: 10px;" />
 
 If we run the klist command again, we can now see two kerberos tickets have been handed out by the Cloud Trust mechanism:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture16.png)
+<img src="https://matthijstuenter.github.io/assets/img/2024-12-04/Picture16.png" alt="image" style="float: left; margin-right: 10px;" />
 
 
