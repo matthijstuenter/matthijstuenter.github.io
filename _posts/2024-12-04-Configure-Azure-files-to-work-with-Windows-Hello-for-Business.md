@@ -45,34 +45,32 @@ When you go back to the properties of the file share in Azure, it will now show 
 
 When you click on ”configured” it shows that AD DS is enabled:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture8.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture9.png)
 
 I also configured the share level permissions and gave my synchronized account (test.sync) the Storage File Data SMB Share Elevated Contributor permissions:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture9.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture10.png)
 
 ### Step 5: Access the AD share from a Entra joined W11 device 
-I created a Windows 11 VM that is Entra Joined (corporate owned). In the VM settings I enabled TPM, this is required for installing W11. In the network settings of the VM, I set the DNS server to the IP of my domain controller, this way the VM has a line of sight to the domain controller. After enabling the Windows Hello for business setting (step 3) the machine was prompted for registration of Windows Hello for business (PIN sign in). At first the registration didn’t succeed because of error 0x80090010. I looked up the error on https://aka.ms/pinerrors but this didn't help me much in finding a cause. After some searching I tried disabling the Enhanced session mode policy for both server and user, after this PIN registration worked without issues. 
-
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture10.png)
+I created a Windows 11 VM that is Entra Joined (corporate owned). In the VM settings I enabled TPM, this is required for installing W11. In the network settings of the VM, I set the DNS server to the IP of my domain controller, this way the VM has a line of sight to the domain controller. After enabling the Windows Hello for business setting (step 3) the machine was prompted for registration of Windows Hello for business (PIN sign in). At first the registration didn’t succeed because of error 0x80090010. I looked up the error on https://aka.ms/pinerrors but this didn't help me much in finding a cause. After some searching I tried disabling the Enhanced session mode policy for both server and user in Hyper-V, after this PIN registration worked without issues. 
  
 I signed in with my PIN on my Entra Joined device:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture11.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png)
 
 After running the klist command, no Kerberos tickets showed up. This is expected because we haven’t yet contacted a domain controller for requesting access to a file share. 
  
 For mounting the file share, I ran the command net use Z: \\%storateaccountname%\file.core.windows.net\%sharename% 
 The share is now mounted in file explorer without requiring further authentication:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture14.png)
 
 I am able to create new folders and files:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture13.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture15.png)
 
 If we run the klist command again, we can now see two kerberos tickets have been handed out by the Cloud Trust mechanism:
 
-![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture14.png)
+![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture16.png)
 
 
