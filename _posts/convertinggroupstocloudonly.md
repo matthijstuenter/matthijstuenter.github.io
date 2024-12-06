@@ -18,6 +18,7 @@ There are 5 types of synchronized objects in my exchange hybrid environment:
 Exchange hybrid is configured in the Entra connect sync settings.
 
 I ran the Microsoft Graph command on 20:45 PM
+Around 21:15 already completed
 
 
 
