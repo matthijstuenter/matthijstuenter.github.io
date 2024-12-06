@@ -5,12 +5,12 @@ title: "Access AD DS integrated shares on Azure Files with Windows Hello for Bus
 Welcome to my first blog. Azure files can be used as an alternative to on-premises file servers. Just like on-premise shares, they can be integrated with Active Directory Domain Services (AD DS). When using Microsoft Entra joined windows devices that are managed with Intune, Windows Hello for Business provides passwordless sign-in (PIN and/or Biometrics) to the device.  Windows Hello for business hybrid can be used additionaly to provide single sign-on from the cloud-only device to Active Directory integrated resources. In this post I want to share how I've set up this functionality in my lab environment, to provide single sign-on to Azure Files.
 
 Following components are part of this lab setup:
-1 Active Directory domain with Microsoft Entra Kerberos (AzureADKerberos) object on the on-premises domain
-2 A user that is synchronized from Active Directory to Microsoft Entra
-3 Intune policy that enables Cloud Trust for on-premises authentication
-4 Intune policy that enforces WHFB on devices
-5 Azure subscription with a storage account for hosting the Azure Files share
-6 Entra Joined Windows 11 virtual machine in Hyper-V with Windows Hello for business (WHFB) enabled
+- Active Directory domain with Microsoft Entra Kerberos (AzureADKerberos) object on the on-premises domain
+- A user that is synchronized from Active Directory to Microsoft Entra
+- Intune policy that enables Cloud Trust for on-premises authentication
+- Intune policy that enforces WHFB on devices
+- Azure subscription with a storage account for hosting the Azure Files share
+- Entra Joined Windows 11 virtual machine in Hyper-V with Windows Hello for business (WHFB) enabled
 
 ### Step 1: Enable Microsoft Entra Kerberos
 Follow these steps to enable the Microsoft Entra Kerberos for your Active Directory domain: https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust?tabs=intune this creates the AzureADKerberos object in the domain controllers OU.
