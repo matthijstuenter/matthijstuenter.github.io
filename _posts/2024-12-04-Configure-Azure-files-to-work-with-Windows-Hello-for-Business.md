@@ -17,12 +17,10 @@ Follow [these steps](https://learn.microsoft.com/en-us/windows/security/identity
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture1.png)
 
-
 ### Step 2: Configure Windows Hello for Business policy that enabled Cloud Trust for on-premises authentication
 In the above Learn article the steps for configuring the Intune configuration policy are also described. I created the following policy and applied it to all users:
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture2.png)
-
 
 ### Step 3: Enable Windows Hello For business
 If not already enabled, make sure that Windows Hello for Business is enabled for the device you want to test with. I created a policy for all users in the Devices > Enrollment > Windows Hello for Business section but you can also target specific users with an Identity protection settings catalog policy. 
@@ -31,7 +29,6 @@ If not already enabled, make sure that Windows Hello for Business is enabled for
 I created a storage account in my trial Azure subscription:
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture4.png)
-
 
 In the file shares section I created a file share:
 
@@ -66,25 +63,20 @@ I signed in with my PIN on my Entra Joined device:
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture12.png)
 
-
 After running the klist command, no Kerberos tickets showed up. This is expected because we haven’t yet contacted a domain controller for requesting access to a file share. 
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture13.png)
 
- 
 For mounting the file share, I ran the command net use Z: \\%storateaccountname%\file.core.windows.net\%sharename% 
 The share is now mounted in file explorer without requiring further authentication:
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture14.png)
 
-
 I am able to create new folders and files:
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture15.png)
 
-
 If we run the klist command again, we can now see two kerberos tickets have been handed out by the Cloud Trust mechanism:
-
 
 ![image](https://matthijstuenter.github.io/assets/img/2024-12-04/Picture16.png)
 
