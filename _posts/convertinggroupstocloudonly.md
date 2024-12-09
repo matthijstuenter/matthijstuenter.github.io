@@ -22,6 +22,6 @@ I ran the Microsoft Graph command on 20:45 PM
 Around 21:00 already completed, but can take 72 hours
 At 9:11 next sync cycle started, didn't do anything because of status stopped-server-down
 
-
-
+https://blog.azureinfra.com/2022/03/10/immutableid-ms-ds-consistencyguid-aadconnect-admt-part-4-groups/ 
+https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-migrate-groups 
 
